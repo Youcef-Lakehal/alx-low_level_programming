@@ -10,7 +10,7 @@
 
 void print_triangle(int size)
 {
-	int row, hashes, spaces;
+	int row, base;
 
 	if (size <= 0)
 	{
@@ -20,13 +20,12 @@ void print_triangle(int size)
 	{
 		for (row = 1; row <= size; row++)
 		{
-			for (spaces = size - row; spaces >= 1; spaces--)
+			for (base = 1; base <= size; base++)
 			{
-				_putchar(' ');
-			}
-			for (hashes = 1; hashes <= row; hashes++)
-			{
-				_putchar('#');
+				if((row + base) <= size)
+					_putchar(' ')
+				else
+					_putchar('#');
 			}
 			_putchar('\n');
 		}
