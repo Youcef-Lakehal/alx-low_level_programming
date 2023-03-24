@@ -2,7 +2,6 @@
 
 /**
  * print_triangle - entry point
- * owned by Bwave/Bright Daniel
  * Description: Prints diagonals
  *@size: size of the triangle
  * Return: void
@@ -10,7 +9,7 @@
 
 void print_triangle(int size)
 {
-	int row, base;
+	int row, hashes, spaces;
 
 	if (size <= 0)
 	{
@@ -20,12 +19,13 @@ void print_triangle(int size)
 	{
 		for (row = 1; row <= size; row++)
 		{
-			for (base = 1; base <= size; base++)
+			for (spaces = size - row; spaces >= 1; spaces--)
 			{
-				if((row + base) <= size)
-					_putchar(' ')
-				else
-					_putchar('#');
+				_putchar(' ');
+			}
+			for (hashes = 1; hashes <= row; hashes++)
+			{
+				_putchar('#');
 			}
 			_putchar('\n');
 		}
