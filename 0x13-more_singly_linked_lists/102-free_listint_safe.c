@@ -9,12 +9,17 @@
 void free_listp2(listp_t **head)
 {
 	listp_t *temp;
+	listp_t *curr;
 
-	while (*head != NULL)
+	if (head != NULL)
 	{
-		temp = *head;
-		*head = (*head)->next;
-		free(temp);
+		curr = *head;
+		while ((temp = curr) != NULL)
+		{
+			curr = curr->next;
+			free(temp);
+		}
+		*head = NULL;
 	}
 }
 
@@ -27,18 +32,16 @@ void free_listp2(listp_t **head)
 size_t free_listint_safe(listint_t **h)
 {
 	size_t nnodes = 0;
-	listp_t *hptr = NULL, *new, *add;
+	listp_t *hptr, *new, *add;
 	listint_t *curr;
 
+	hptr = NULL;
 	while (*h != NULL)
 	{
 		new = malloc(sizeof(listp_t));
 
 		if (new == NULL)
-		{
-			free_listp2(&hptr);
 			exit(98);
-		}
 
 		new->p = (void *)*h;
 		new->next = hptr;
@@ -63,6 +66,7 @@ size_t free_listint_safe(listint_t **h)
 		nnodes++;
 	}
 
+	*h = NULL;
 	free_listp2(&hptr);
 	return (nnodes);
 }
